@@ -1,0 +1,32 @@
+  308 sudo apt-get install ufw -y
+  309  sudo ufw enable
+  310  sudo ufw status
+  311  sudo nano /etc/default/ufw
+  312  sudo ufw app list
+  313  sudo ufw allow OpenSSH
+  314  sudo ufw allow ssh
+  315  sudo ufw show added
+  316  sudo ufw enable
+  317  sudo ufw status verbose
+  318  sudo ufw allow 80 && 443
+  319  sudo ufw allow 443
+  320  sudo ufw app list
+  321  sudo ufw show added
+  322  sudo ufw allow http
+  323  sudo ufw allow https
+  324  sudo ufw allow www
+  325  sudo ufw status verbose
+  326  sudo ufw enable
+  327  cd /etc/var/log/apache2
+  328  cd /etc/
+  329  cd /var/log/apache2
+  330  ls
+  331  cd /etc/
+  332  ls
+  333  cd sample/
+  334  cd /var/www
+  335  ls
+  336  cd sample/
+  337  ls
+  338  sudo a2enmod auth_basic
+  339  sudo apt install apache2-utils
