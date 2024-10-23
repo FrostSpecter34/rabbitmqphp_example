@@ -34,7 +34,7 @@ function requestProcessor($messageBody)
     }
 }
 
-$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest'); // Replace 'localhost' with your RabbitMQ server IP if needed
+$connection = new AMQPStreamConnection('127.0.0.1', 5672, 'mdl35', 'mdl35it490');
 $channel = $connection->channel();
 
 $queueName = 'TestQueue';
