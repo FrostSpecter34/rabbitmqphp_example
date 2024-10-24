@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/../vendor/autoload.php");
 require_once('db_connect.php');
 require_once('db_functions.php');
+require_once('rabbitmq_connect.php');
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
