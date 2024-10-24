@@ -1,40 +1,54 @@
+<!--Not being used at the moment-->
 <?php
-require_once __DIR__ . '/vendor/autoload.php'; //Rabbitmq library
+require_once 'vendor/autoload.php'; // Include the RabbitMQ library (php-amqplib)
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-//Creds for login check
-$validUsername = 'user';
-$validPassword = 'password';
+// Read JSON input
+$data = json_decode(file_get_contents('php://input'), true);
+$username = $data['username'];
+$password = $data['password'];
 
-//retrieve post data from form
-$username = $_POST['username'];
-$password = $_POST['password'];
+// RabbitMQ connection
+$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+$channel = $connection->channel();
 
-//auth check
-if ($username === $validUsername && $password === $validPassword) {
-    echo "Login successful!<br>";
+// Declare a queue for authentication
+$channel->queue_declare('auth_queue', false, true, false, false, false, []);
 
-    //establish rabbitmq connection
-    $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
-    $channel = $connection->channel();
+// Create the message
+$messageData = json_encode(['username' => $username, 'password' => $password]);
+$msg = new AMQPMessage($messageData);
+$channel->basic_publish($msg, '', 'auth_queue');
 
-    //declare rabbitmq queue
-    $channel->queue_declare('login_queue', false, false, false, false);
+// Consume the response
+$response = null;
 
-    //create message
-    $msg = new AMQPMessage("User $username logged in successfully.");
+// Callback function to process responses
+$callback = function($msg) use (&$response) {
+    $response = json_decode($msg->body, true);
+};
 
-    //send message to the queue
-    $channel->basic_publish($msg, '', 'login_queue');
+// Set up consumer to listen for the response
+$channel->basic_consume('auth_response_queue', '', false, true, false, false, $callback);
 
-    echo "Message sent to RabbitMQ: 'User $username logged in successfully.'";
+// Wait for a response for 5 seconds
+$startTime = time();
+while (!$response && (time() - $startTime) < 5) {
+    $channel->wait();
+}
 
-    //close channel and connection
-    $channel->close();
-    $connection->close();
+// Close the connection
+$channel->close();
+$connection->close();
+
+// Return the response as JSON
+if ($response) {
+    header('Content-Type: application/json');
+    echo json_encode($response);
 } else {
-    echo "Login failed! Check your username and password.";
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'No response from server.']);
 }
 ?>
