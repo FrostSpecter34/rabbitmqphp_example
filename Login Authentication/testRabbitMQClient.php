@@ -1,52 +1,44 @@
 <?php
-require_once 'vendor/autoload.php'; // Include the RabbitMQ library (php-amqplib)
+// Include the RabbitMQ library
+require_once __DIR__ . '/vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-// Read JSON input
+// Get the posted data
 $data = json_decode(file_get_contents('php://input'), true);
 $username = $data['username'] ?? '';
 $password = $data['password'] ?? '';
 
-// RabbitMQ connection
-$connection = new AMQPStreamConnection('127.0.0.1', 5672, 'test', 'test', 'testHost');
+// Prepare the message
+$messageBody = json_encode(['username' => $username, 'password' => $password]);
+
+// Connect to RabbitMQ
+$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
 $channel = $connection->channel();
+$channel->queue_declare('login_queue', false, false, false, false);
 
-// Declare a queue for authentication
-$channel->queue_declare('auth_queue', false, true, false, false, false, []);
+// Send the message
+$msg = new AMQPMessage($messageBody);
+$channel->basic_publish($msg, '', 'login_queue');
 
-// Create the message
-$messageData = json_encode(['username' => $username, 'password' => $password]);
-$msg = new AMQPMessage($messageData);
-$channel->basic_publish($msg, '', 'auth_queue');
-
-// Consume the response
+// Wait for the response
+$callbackQueue = $channel->queue_declare("", false, false, true, false)[0];
 $response = null;
-
-// Callback function to process responses
-$callback = function($msg) use (&$response) {
+$channel->basic_consume($callbackQueue, '', false, true, false, false, function ($msg) use (&$response) {
     $response = json_decode($msg->body, true);
-};
+});
 
-// Set up consumer to listen for the response
-$channel->basic_consume('auth_response_queue', '', false, true, false, false, $callback);
-
-// Wait for a response for 5 seconds
-$startTime = time();
-while (!$response && (time() - $startTime) < 5) {
+// Wait until response is received
+while (!$response) {
     $channel->wait();
 }
 
-// Close the connection
+// Close the channel and connection
 $channel->close();
 $connection->close();
 
-// Return the response as JSON
-if ($response) {
-    echo json_encode($response);
-} else {
-    echo json_encode(['success' => false, 'message' => 'No response from server.']);
-};
-
+// Send the response back to the client
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>
