@@ -1,0 +1,26 @@
+:root { 
+  --black: #000000;
+  --ironstone: #7e4949;
+  --mountain-mist: #979797;
+  --white: #ffffff;
+ 
+  --font-size-l: 96px;
+  --font-size-m: 48px;
+ 
+  --font-family-roboto: "Roboto", Helvetica;
+}
+.roboto-normal-black-48px {
+  color: var(--black);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.roboto-normal-mountain-mist-48px {
+  color: var(--mountain-mist);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}

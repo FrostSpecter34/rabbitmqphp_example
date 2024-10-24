@@ -1,0 +1,67 @@
+/* screen - frame-6 */
+
+.frame-6 {
+  align-items: flex-start;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  height: 1535px;
+  padding: 28px 50px;
+  width: 2156px;
+}
+
+.frame-6 .title {
+  -webkit-text-stroke: 1px var(--black);
+  letter-spacing: 0;
+  line-height: 27.5px;
+  margin-left: 24px;
+  margin-top: 92px;
+  min-height: 42px;
+  width: 603px;
+}
+
+.frame-6 .website {
+  -webkit-text-stroke: 1px var(--black);
+  letter-spacing: 0;
+  line-height: 27.5px;
+  margin-left: 24px;
+  margin-top: 141px;
+  min-height: 42px;
+  width: 603px;
+}
+
+.frame-6 .frame {
+  align-items: flex-start;
+  background-color: var(--white);
+  border: 1px solid;
+  border-color: var(--black);
+  display: flex;
+  height: 117px;
+  margin-left: 25px;
+  margin-top: 72px;
+  padding: 25px 37px;
+  width: 1247px;
+}
+
+.frame-6 .card {
+  -webkit-text-stroke: 1px var(--black);
+  letter-spacing: 0;
+  line-height: 27.5px;
+  margin-left: 24px;
+  margin-top: 105px;
+  min-height: 42px;
+  width: 603px;
+}
+
+.frame-6 .return-to-homepage {
+  align-self: flex-end;
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-s);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: 207px;
+  min-height: 94px;
+  width: 484px;
+}
