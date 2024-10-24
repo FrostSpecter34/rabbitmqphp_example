@@ -1,55 +1,43 @@
 <?php
-require_once 'vendor/autoload.php'; // Include the RabbitMQ library (php-amqplib)
-
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
+// Include the RabbitMQ library
+require_once __DIR__ . '/vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-// RabbitMQ connection
-$connection = new AMQPStreamConnection('127.0.0.1', 5672, 'test', 'test', 'testHost');
+// Connect to RabbitMQ
+$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
 $channel = $connection->channel();
+$channel->queue_declare('login_queue', false, false, false, false);
 
-// Declare the authentication request queue
-$channel->queue_declare('auth_queue', false, true, false, false, false, []);
-
-// Declare the response queue
-$channel->queue_declare('auth_response_queue', false, true, false, false, false, []);
-
-// Callback function to handle incoming messages
-$callback = function($msg) use ($channel) {
+$callback = function ($msg) {
     $data = json_decode($msg->body, true);
-    $username = $data['username'];
-    $password = $data['password'];
+    $username = $data['username'] ?? '';
+    $password = $data['password'] ?? '';
 
-    // For demonstration, we'll use a hardcoded user
-    $storedHashedPassword = password_hash('password', PASSWORD_BCRYPT); // Hashed password for "password"
+    // Validate the credentials (replace with your own logic)
+    $isValid = ($username === 'admin' && $password === 'password'); // Example validation
 
-    // Simple authentication check
-    if ($username === 'yourusername' && password_verify($password, $storedHashedPassword)) {
-        // Authentication successful
-        $response = ['success' => true, 'message' => 'Login successful.'];
-    } else {
-        // Authentication failed
-        $response = ['success' => false, 'message' => 'Invalid username or password.'];
-    }
+    // Prepare the response
+    $response = [
+        'success' => $isValid,
+        'message' => $isValid ? 'Login successful.' : 'Invalid username or password.',
+    ];
 
-    // Send response back to the response queue
+    // Send the response back
     $responseMsg = new AMQPMessage(json_encode($response));
-    $channel->basic_publish($responseMsg, '', 'auth_response_queue');
+    $msg->delivery_info['channel']->basic_publish($responseMsg, '', $msg->get('reply_to'));
+    $msg->ack();
 };
 
-// Start consuming messages
-$channel->basic_consume('auth_queue', '', false, true, false, false, $callback);
+$channel->basic_consume('login_queue', '', false, false, false, false, $callback);
 
 // Wait for messages
-while (true) {
+while ($channel->is_consuming()) {
     $channel->wait();
 }
 
-// Close the connection (will not reach here in normal use)
+// Close the channel and connection
 $channel->close();
 $connection->close();
 ?>
