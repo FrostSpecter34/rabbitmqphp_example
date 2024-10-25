@@ -46,5 +46,10 @@ $channel->queue_declare('login_queue', false, false, false, false);
     // Close the channel and connection
     $channel->close();
     $connection->close();
+<<<<<<< HEAD
 
 ?>
+=======
+}
+?>
+>>>>>>> 12c85f3bdce358bc7ee8befbaee9d2a6b7e06795
