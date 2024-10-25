@@ -16,7 +16,7 @@ $callback = function ($msg) {
     $password = $data['password'] ?? '';
 
     // Validate the credentials (replace with your own logic)
-    $isValid = ($username === 'admin' && $password === 'password'); // Example validation
+    $isValid = ($username === 'yourusername' && $password === 'password'); // Example validation
 
     // Prepare the response
     $response = [
