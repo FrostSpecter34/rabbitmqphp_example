@@ -21,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Execute the request
         $response = curl_exec($ch);
+        // After curl_exec in index.php
+        if ($response === false) {
+            error_log('cURL error: ' . curl_error($ch));
+        }
         curl_close($ch);
 
         // Handle the response
@@ -34,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['loggedin'] = true;
 
                 // Redirect to a protected page if login is successful
-                header('Location: main.php'); // Change this to your actual protected page
+                header('Location: http://www.sample.com/main.php'); 
                 exit;
             }
         } else {

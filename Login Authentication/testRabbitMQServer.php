@@ -8,7 +8,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 // Connect to RabbitMQ
 $connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test', 'testHost');
 $channel = $connection->channel();
-$channel->queue_declare('testQueue', false, false, false, false);
+$channel->queue_declare('testQueue', false, true, false, false);
 
     $callback = function ($msg) {
         $data = json_decode($msg->body, true);

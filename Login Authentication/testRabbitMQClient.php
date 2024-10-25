@@ -16,7 +16,7 @@ $messageBody = json_encode(['username' => $username, 'password' => $password]);
 // Connect to RabbitMQ
 $connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test', 'testHost');
 $channel = $connection->channel();
-$channel->queue_declare('testQueue', false, false, false, false);
+$channel->queue_declare('testQueue', false, true, false, false);
 
 // Declare a callback queue
 list($callbackQueue, ,) = $channel->queue_declare("", false, false, true, false);
@@ -42,6 +42,11 @@ while (!$response) {
 // Close the channel and connection
 $channel->close();
 $connection->close();
+
+// In testRabbitMQClient.php
+if (!$response) {
+    error_log('No response from RabbitMQ server.');
+}
 
 // Send the response back to the client
 header('Content-Type: application/json');
