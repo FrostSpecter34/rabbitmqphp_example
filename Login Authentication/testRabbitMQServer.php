@@ -46,9 +46,5 @@ $channel->queue_declare('login_queue', false, false, false, false);
     // Close the channel and connection
     $channel->close();
     $connection->close();
-
-} catch (\PhpAmqpLib\Exception\AMQPConnectionClosedException $e) {
-    error_log('Connection to RabbitMQ failed: ' . $e->getMessage());
-    exit('Connection to RabbitMQ failed.');
 }
 ?>
