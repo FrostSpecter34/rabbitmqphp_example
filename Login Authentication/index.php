@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ensure username and password are not empty
     if (!empty($username) && !empty($password)) {
         // Send login data to the PHP client
-        $ch = curl_init('http://www.sample.com/Login Authentication/testRabbitMQClient.php');
+        $ch = curl_init('http://www.sample.com/testRabbitMQClient.php');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['username' => $username, 'password' => $password]));
