@@ -16,7 +16,7 @@ $messageBody = json_encode(['username' => $username, 'password' => $password]);
 // Connect to RabbitMQ
 $connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test', 'testHost');
 $channel = $connection->channel();
-$channel->queue_declare('login_queue', false, false, false, false);
+$channel->queue_declare('testQueue', false, false, false, false);
 
 // Declare a callback queue
 list($callbackQueue, ,) = $channel->queue_declare("", false, false, true, false);
@@ -32,7 +32,7 @@ $channel->basic_consume($callbackQueue, '', false, true, false, false, function 
 
 // Send the message
 $msg = new AMQPMessage($messageBody, ['correlation_id' => $corr_id, 'reply_to' => $callbackQueue]);
-$channel->basic_publish($msg, '', 'login_queue');
+$channel->basic_publish($msg, '', 'testQueue');
 
 // Wait for the response
 while (!$response) {
