@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start the session
+
 // Initialize message variable
 $message = '';
 
@@ -27,6 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = $data['message'] ?? 'Invalid response from server.'; // Display message
 
             if (!empty($data['success']) && $data['success'] === true) {
+                // Set session variables
+                $_SESSION['username'] = $username;
+                $_SESSION['loggedin'] = true;
+
                 // Redirect to a protected page if login is successful
                 header('Location: main.php'); // Change this to your actual protected page
                 exit;

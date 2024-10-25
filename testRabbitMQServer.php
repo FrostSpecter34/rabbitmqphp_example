@@ -36,13 +36,6 @@ $callback = function ($msg) {
     }
 };
 
-$channel->basic_consume('login_queue', '', false, false, false, false, $callback);
-
-// Wait for messages
-while ($channel->is_consuming()) {
-    $channel->wait();
-}
-
 // Close the channel and connection
 $channel->close();
 $connection->close();
