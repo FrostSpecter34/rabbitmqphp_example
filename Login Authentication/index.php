@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ensure username and password are not empty
     if (!empty($username) && !empty($password)) {
         // Send login data to the PHP client
-        $ch = curl_init('http://www.sample.com/testRabbitMQClient.php');
+        $ch = curl_init('http://www.sample.com/Login Authentication/testRabbitMQClient.php');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['username' => $username, 'password' => $password]));
@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($response) {
             $data = json_decode($response, true);
             $message = $data['message'] ?? 'Invalid response from server.'; // Display message
+
             if (!empty($data['success']) && $data['success'] === true) {
                 // Redirect to a protected page if login is successful
                 header('Location: main.php'); // Change this to your actual protected page

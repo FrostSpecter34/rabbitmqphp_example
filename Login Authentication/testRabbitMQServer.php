@@ -5,19 +5,18 @@ require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-try {
-    // Connect to RabbitMQ using the correct virtual host
-    $connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test', 'testHost');
-    $channel = $connection->channel();
-    $channel->queue_declare('login_queue', false, false, false, false);
+// Connect to RabbitMQ
+$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+$channel = $connection->channel();
+$channel->queue_declare('login_queue', false, false, false, false);
 
     $callback = function ($msg) {
         $data = json_decode($msg->body, true);
         $username = $data['username'] ?? '';
         $password = $data['password'] ?? '';
 
-        // Validate the credentials (replace with your own logic)
-        $isValid = ($username === 'yourusername' && $password === 'password'); // Example validation
+    // Validate the credentials (replace with your own logic)
+    $isValid = ($username === 'admin' && $password === 'password'); // Example validation
 
         // Prepare the response
         $response = [
