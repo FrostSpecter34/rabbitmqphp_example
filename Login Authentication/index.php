@@ -25,17 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($response) {
             $data = json_decode($response, true);
             $message = $data['message'] ?? 'Invalid response from server.'; // Display message
-            if (!empty($data['success']) && $data['success'] === true) {
-                // Redirect to a protected page if login is successful
-                header('Location: main.php'); // Change this to your actual protected page
-                exit;
-            }
-        } else {
-            $message = 'Error communicating with RabbitMQ client.';
+            // Debugging: Log the response
+            file_put_contents('response_log.txt', $response);
+
+        if (!empty($data['success']) && $data['success'] === true) {
+            // Redirect to a protected page if login is successful
+            header('Location: main.php'); // Change this to your actual protected page
+            exit;
         }
     } else {
-        $message = 'Username and password cannot be empty.';
-    }
+        $message = 'Error communicating with RabbitMQ client.';
+    } 
 }
 ?>
 
