@@ -4,19 +4,36 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6864f70e997927075b9aeb5dd3c123d9
+class ComposerStaticInitf0472d96078d1c4feee6457be7b37f93
 {
+    public static $files = array (
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'p' => 
+        array (
+            'phpseclib3\\' => 11,
+        ),
         'P' => 
         array (
             'PhpAmqpLib\\' => 11,
+            'ParagonIE\\ConstantTime\\' => 23,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'phpseclib3\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
         'PhpAmqpLib\\' => 
         array (
-            0 => __DIR__ . '/..' . '/videlalvaro/php-amqplib/PhpAmqpLib',
+            0 => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib',
+        ),
+        'ParagonIE\\ConstantTime\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
         ),
     );
 
@@ -27,9 +44,9 @@ class ComposerStaticInit6864f70e997927075b9aeb5dd3c123d9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6864f70e997927075b9aeb5dd3c123d9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6864f70e997927075b9aeb5dd3c123d9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6864f70e997927075b9aeb5dd3c123d9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf0472d96078d1c4feee6457be7b37f93::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf0472d96078d1c4feee6457be7b37f93::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitf0472d96078d1c4feee6457be7b37f93::$classMap;
 
         }, null, ClassLoader::class);
     }

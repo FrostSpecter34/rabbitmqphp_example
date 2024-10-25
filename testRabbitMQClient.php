@@ -44,10 +44,9 @@ $connection->close();
 
 // Return the response as JSON
 if ($response) {
-    header('Content-Type: application/json');
     echo json_encode($response);
 } else {
-    header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => 'No response from server.']);
-}
+};
+
 ?>

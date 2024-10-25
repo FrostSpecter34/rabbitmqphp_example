@@ -45,7 +45,7 @@ $callback = function($msg) use ($channel) {
 $channel->basic_consume('auth_queue', '', false, true, false, false, $callback);
 
 // Wait for messages
-while ($channel->is_consuming()) {
+while (true) {
     $channel->wait();
 }
 
