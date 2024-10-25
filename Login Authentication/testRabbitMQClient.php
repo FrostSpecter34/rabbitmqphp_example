@@ -14,7 +14,7 @@ $password = $data['password'] ?? '';
 $messageBody = json_encode(['username' => $username, 'password' => $password]);
 
 // Connect to RabbitMQ
-$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+$connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test');
 $channel = $connection->channel();
 $channel->queue_declare('login_queue', false, false, false, false);
 
