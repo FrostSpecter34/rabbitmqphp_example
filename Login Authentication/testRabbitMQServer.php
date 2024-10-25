@@ -6,7 +6,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 // Connect to RabbitMQ
-$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+$connection = new AMQPStreamConnection('localhost', 5672, 'test', 'test', 'testHost');
 $channel = $connection->channel();
 $channel->queue_declare('login_queue', false, false, false, false);
 
@@ -16,7 +16,7 @@ $channel->queue_declare('login_queue', false, false, false, false);
         $password = $data['password'] ?? '';
 
     // Validate the credentials (replace with your own logic)
-    $isValid = ($username === 'admin' && $password === 'password'); // Example validation
+    $isValid = ($username === 'yourusername' && $password === 'password'); // Example validation
 
         // Prepare the response
         $response = [
@@ -46,10 +46,4 @@ $channel->queue_declare('login_queue', false, false, false, false);
     // Close the channel and connection
     $channel->close();
     $connection->close();
-<<<<<<< HEAD
-
 ?>
-=======
-}
-?>
->>>>>>> 12c85f3bdce358bc7ee8befbaee9d2a6b7e06795
