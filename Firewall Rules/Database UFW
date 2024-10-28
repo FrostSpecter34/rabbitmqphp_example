@@ -1,0 +1,5 @@
+sudo apt-get install ufw -y
+sudo ufw allow from <DMZ_IP> to any port 3306 proto tcp
+sudo ufw default deny incoming
+sudo ufw default deny outgoing
+sudo ufw enable
