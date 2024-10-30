@@ -1,5 +1,5 @@
 <?php
-// Include the RabbitMQ library
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -43,7 +43,6 @@ while (!$response) {
 $channel->close();
 $connection->close();
 
-// In testRabbitMQClient.php
 if (!$response) {
     error_log('No response from RabbitMQ server.');
 }

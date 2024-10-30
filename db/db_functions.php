@@ -26,6 +26,27 @@ function registerUser($username, $email, $password) {
     $connection->close();
 }
 
+//Fetch stored User
+function getUserCredentials($username) {
+    $connection = dbConnection();
+    $stmt = $connection->prepare('SELECT password FROM Users WHERE username = ?');
+
+    if ($stmt) {
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $stmt->bind_result($storedPassword);
+        $stmt->fetch();
+        $stmt->close();
+    } else {
+        echo "Error preparing SQL statement: " . $connection->error . PHP_EOL;
+        return null;
+    }
+
+    $connection->close();
+    return $storedPassword;
+}
+
+
 // Adds to the Services table
 function addService($userId, $serviceDetails) {
     $connection = dbConnection();

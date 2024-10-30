@@ -15,7 +15,7 @@ $channel->queue_declare('testQueue', false, true, false, false);
         $username = $data['username'] ?? '';
         $password = $data['password'] ?? '';
 
-    // Validate the credentials (replace with your own logic)
+    // Validate the credentials
     $isValid = ($username === 'yourusername' && $password === 'password'); // Example validation
 
         // Prepare the response
@@ -23,7 +23,13 @@ $channel->queue_declare('testQueue', false, true, false, false);
             'success' => $isValid,
             'message' => $isValid ? 'Login successful.' : 'Invalid username or password.',
         ];
+    // Validate the credentials
+    $isValid = password_verify($password, $storedPassword);
 
+    $response = [
+        'success' => $isValid,
+        'message' => $isValid ? 'Login successful.' : 'Invalid username or password.',
+    ];
         // Ensure the reply_to property is set
         if (!empty($msg->get('reply_to'))) {
             // Send the response back
