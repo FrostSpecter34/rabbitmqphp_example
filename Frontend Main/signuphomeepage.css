@@ -1,6 +1,6 @@
 /* screen - homeepage */
 
-.homeepage {
+.signuphomeepage {
   align-items: flex-start;
   background-color: #ffffff;
   display: flex;
@@ -11,7 +11,7 @@
   width: 1440px;
 }
 
-.homeepage .nav-bar {
+.signuphomeepage .nav-bar {
   align-items: flex-start;
   align-self: center;
   display: flex;
@@ -21,7 +21,7 @@
   min-width: 1269px;
 }
 
-.homeepage .sudo-squad-sub-manager {
+.signuphomeepage .sudo-squad-sub-manager {
   -webkit-text-stroke: 1px var(--black);
   color: var(--black);
   font-family: var(--font-family-roboto);
@@ -35,7 +35,7 @@
   white-space: nowrap;
 }
 
-.homeepage .sign-up-here {
+.signuphomeepage .sign-up-here {
   -webkit-text-stroke: 1px var(--ironstone);
   align-self: center;
   letter-spacing: 0;
@@ -48,7 +48,7 @@
   width: 417px;
 }
 
-.homeepage .username {
+.signuphomeepage .username {
   letter-spacing: 0;
   line-height: 27.5px;
   margin-left: 152px;
@@ -57,7 +57,23 @@
   width: 234px;
 }
 
-.homeepage .email {
+
+
+/* adjust form here */
+.signuphomeepage .userinput {
+  letter-spacing: 0;
+  line-height: 27.5px;
+  margin-left: 152px;
+  margin-top: 181px;
+  min-height: 46px;
+  width: 234px;
+}
+
+/*adjust from here */
+
+
+
+.signuphomeepage .email {
   letter-spacing: 0;
   line-height: 27.5px;
   margin-left: 152px;
@@ -66,7 +82,7 @@
   width: 234px;
 }
 
-.homeepage .password {
+.signuphomeepage .password {
   letter-spacing: 0;
   line-height: 27.5px;
   margin-left: 152px;
@@ -75,7 +91,7 @@
   width: 234px;
 }
 
-.homeepage .confirm-password {
+.signuphomeepage .confirm-password {
   letter-spacing: 0;
   line-height: 27.5px;
   margin-left: 152px;
@@ -84,7 +100,7 @@
   width: 632px;
 }
 
-.homeepage .flex-row {
+.signuphomeepage .flex-row {
   align-items: flex-start;
   align-self: flex-end;
   display: flex;
@@ -95,7 +111,7 @@
   min-width: 1462px;
 }
 
-.homeepage .already-a-member {
+.signuphomeepage .already-a-member {
   -webkit-text-stroke: 1px var(--ironstone);
   align-self: flex-end;
   letter-spacing: 0;
@@ -106,7 +122,7 @@
   width: 906px;
 }
 
-.homeepage .login-here {
+.signuphomeepage .login-here {
   -webkit-text-stroke: 1px var(--ironstone);
   letter-spacing: 0;
   line-height: 27.5px;
