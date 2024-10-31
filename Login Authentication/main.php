@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once 'testRabbitMQServer.php';
+//require_once 'testRabbitMQServer.php';
 
 // Fetch subscriptions from the database via RabbitMQ
-$subscriptions = fetchSubscriptions();
-$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'name';
-usort($subscriptions, function($a, $b) use ($sort_by) {
-    return strcmp($a[$sort_by], $b[$sort_by]);
-});
+//$subscriptions = fetchSubscriptions();
+//$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'name';
+//usort($subscriptions, function($a, $b) use ($sort_by) {
+//    return strcmp($a[$sort_by], $b[$sort_by]);
+//});
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +16,6 @@ usort($subscriptions, function($a, $b) use ($sort_by) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/Homepage.css" />
-    <link rel="stylesheet" type="text/css" href="css/homestyleguide.css" />
-    <link rel="stylesheet" type="text/css" href="css/homeglobals.css" />
 </head>
 <body style="margin: 0; background: #ffffff">
     <div class="container-center-horizontal">

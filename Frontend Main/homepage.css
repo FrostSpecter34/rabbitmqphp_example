@@ -1,79 +1,130 @@
-/* screen - frame-3 */
-
-.frame-3 {
-  align-items: flex-start;
-  background-color: #ffffff;
-  border: 1px solid;
-  border-color: var(--black);
-  display: flex;
-  gap: 248px;
-  height: 2764px;
-  padding: 62px 33px;
-  width: 1667px;
+/* Import existing styles */
+body, h1, h2, p, ul, li, form {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.frame-3 .flex-col {
-  align-items: flex-start;
+/* Set background color and font styles for the entire page */
+body {
+  background-color: #f2f2f2;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Centering container */
+.container-center-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main content styling */
+.frame-3 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1.sudo-squad-sub-manager {
+  font-size: 36px;
+  color: #444;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Account and subscription headings */
+.my-account, .active-subscriptions {
+  font-size: 18px;
+  margin: 15px 0;
+  text-align: center;
+  color: #555;
+}
+
+/* Form and sorting dropdown */
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+select#sort_by {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Subscription items styling */
+.subscriptions-list {
   display: flex;
   flex-direction: column;
-  margin-left: 12px;
-  min-height: 751px;
-  width: 957px;
+  gap: 15px;
 }
 
-.frame-3 .sudo-squad-sub-manager {
-  -webkit-text-stroke: 1px var(--black);
-  letter-spacing: 0;
-  line-height: 27.5px;
-  min-height: 28px;
-  white-space: nowrap;
-}
-
-.frame-3 .my-account {
-  -webkit-text-stroke: 1px var(--black);
-  align-self: flex-end;
-  letter-spacing: 0;
-  line-height: 27.5px;
-  margin-top: 134px;
-  min-height: 28px;
-  min-width: 339px;
-  white-space: nowrap;
-}
-
-.frame-3 .search-subscriptions {
-  -webkit-text-stroke: 1px var(--black);
-  letter-spacing: 0;
-  line-height: 27.5px;
-  margin-top: 155px;
-  min-height: 42px;
-  width: 603px;
-}
-
-.frame-3 .active-subscriptions {
-  -webkit-text-stroke: 1px var(--black);
-  letter-spacing: 0;
-  line-height: 27.5px;
-  margin-top: 322px;
-  min-height: 42px;
-  width: 603px;
-}
-
-.frame-3 .frame-4 {
-  align-items: flex-end;
-  background-color: #c7c7c7;
-  border-radius: 100px;
+.subscription-item {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
   display: flex;
-  height: 136px;
-  margin-top: 664px;
-  overflow: hidden;
-  padding: 0 104px;
-  width: 384px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.frame-3 .add {
-  letter-spacing: 0;
-  line-height: 27.5px;
-  margin-bottom: -48px;
-  min-height: 137px;
-  width: 176px;
+.subscription-item div {
+  font-size: 16px;
+}
+
+/* Details dropdown */
+.subscription-details select {
+  padding: 5px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+/* Links */
+a {
+  color: #ff0066;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+  text-align: center;
+}
+
+a:hover {
+  color: #ff3399;
+}
+
+/* Footer styling */
+footer {
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+/* Other link states */
+a:link {
+  color: red;
+}
+a:hover {
+  color: aqua;
+}
+a:focus {
+  color: blue;
+}
+a:active {
+  color: bisque;
+}
+a:visited {
+  color: #B026ff;
 }
