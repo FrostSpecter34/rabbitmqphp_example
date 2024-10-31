@@ -6,7 +6,7 @@ Work Allocation:
 
 Databases:
 
-Front-end (web page):
+Front-end (web page): James Quintas
 
 Authentication and firewall: Andrew Rodriguez
 
