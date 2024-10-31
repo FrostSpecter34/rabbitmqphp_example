@@ -1,3 +1,33 @@
+<?php
+// add_subscription.php
+session_start();
+
+// Initialize subscriptions array if it doesn't exist
+if (!isset($_SESSION['subscriptions'])) {
+    $_SESSION['subscriptions'] = [];
+}
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve form data
+    $subscription = [
+        'website' => $_POST['website'],
+        'card_type' => $_POST['card_type'],
+        'card_number' => $_POST['card_number'],
+        'paypal' => $_POST['paypal']
+    ];
+
+    // Add subscription to session
+    $_SESSION['subscriptions'][] = $subscription;
+
+    // Redirect to main page with a success message
+    $_SESSION['message'] = "Subscription added successfully!";
+    header("Location: main.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
