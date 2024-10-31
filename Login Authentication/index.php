@@ -56,19 +56,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST" action="">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
+    <div class="container-center-horizontal">
+        <div class="frame-3 screen">
+            <header>
+                <h1 class="sudo-squad-sub-manager">Login</h1>
+            </header>
+            <main>
+                <form method="POST" action="">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <br><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <br><br>
+                    <button type="submit">Login</button>
+                </form>
 
-    <div id="message"><?php echo htmlspecialchars($message); ?></div>
+                <div id="message"><?php echo htmlspecialchars($message); ?></div>
+            </main>
+        </div>
+    </div>
 </body>
 </html>
