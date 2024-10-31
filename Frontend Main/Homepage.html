@@ -18,6 +18,18 @@
       }
       .subscription-item {
         margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .delete-button {
+        margin-left: 10px;
+        padding: 5px 10px;
+        color: white;
+        background-color: red;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
       }
     </style>
   </head>
@@ -37,7 +49,6 @@
     <div id="subscriptionList" class="subscription-list"></div>
 
     <script>
-      
       const subscriptions = [
         { name: "Netflix", price: 15.99, expires: "2023-11-07" },
         { name: "Spotify", price: 9.99, expires: "2023-11-10" },
@@ -48,12 +59,27 @@
         const subscriptionList = document.getElementById("subscriptionList");
         subscriptionList.innerHTML = ""; 
 
-        subscriptions.forEach((subscription) => {
+        subscriptions.forEach((subscription, index) => {
           const item = document.createElement("div");
           item.className = "subscription-item";
-          item.textContent = `${subscription.name} - $${subscription.price} - Expires on: ${subscription.expires}`;
+
+          const text = document.createElement("span");
+          text.textContent = `${subscription.name} - $${subscription.price} - Expires on: ${subscription.expires}`;
+
+          const deleteButton = document.createElement("button");
+          deleteButton.className = "delete-button";
+          deleteButton.textContent = "Delete";
+          deleteButton.addEventListener("click", () => deleteSubscription(index));
+
+          item.appendChild(text);
+          item.appendChild(deleteButton);
           subscriptionList.appendChild(item);
         });
+      }
+
+      function deleteSubscription(index) {
+        subscriptions.splice(index, 1); 
+        displaySubscriptions(); 
       }
 
       document.getElementById("sortOptions").addEventListener("change", function() {
@@ -76,32 +102,12 @@
 
           if (diffDays === 7) { 
             console.log(`Reminder: ${subscription.name} subscription expires in one week!`);
-            // Placeholder for server call
-            // sendEmailNotification(subscription.name, subscription.expires);
           }
         });
       }
 
-    
       displaySubscriptions();
-
       checkExpirations();
-
-      // Placeholder function for sending an email (requires backend implementation)
-      function sendEmailNotification(subscriptionName, expirationDate) {
-        // Example of a POST request to a server-side email function
-        fetch('/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: subscriptionName,
-            expires: expirationDate
-          })
-        })
-        .then(response => response.json())
-        .then(data => console.log('Email sent:', data))
-        .catch(error => console.error('Error sending email:', error));
-      }
     </script>
   </body>
 </html>
