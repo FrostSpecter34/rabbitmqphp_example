@@ -27,8 +27,11 @@ function registerUser($username, $email, $password) {
 }
 
 //Fetch stored User
-function getUserCredentials($username) {
+function userLogin($username) {
     $connection = dbConnection();
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
     $stmt = $connection->prepare('SELECT password FROM Users WHERE username = ?');
 
     if ($stmt) {
@@ -37,6 +40,16 @@ function getUserCredentials($username) {
         $stmt->bind_result($storedPassword);
         $stmt->fetch();
         $stmt->close();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->close();
+            $connection->close();
+            return $storedPassword;
+        } else {
+            $stmt->close();
+            $connection->close();
+            return null;
+        }
     } else {
         echo "Error preparing SQL statement: " . $connection->error . PHP_EOL;
         return null;
