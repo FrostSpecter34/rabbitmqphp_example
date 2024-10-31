@@ -15,7 +15,7 @@ $channel->queue_declare('testQueue', false, true, false, false);
         $username = $data['username'] ?? '';
         $password = $data['password'] ?? '';
 
-    // Validate the credentials (Hardcoded, to be removed later when database lines work *_*)
+    // Validate the credentials (Hardcoded, to be removed later when database lines work _*)
     $isValid = ($username === 'yourusername' && $password === 'password'); // Example validation
 
         // Prepare the response
