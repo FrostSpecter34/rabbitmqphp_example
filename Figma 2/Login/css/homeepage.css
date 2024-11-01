@@ -2,7 +2,7 @@
 
 .homeepage {
   align-items: flex-start;
-  background-color: var(--white);
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   height: 2138px;
@@ -22,7 +22,7 @@
   -webkit-text-stroke: 1px var(--black);
   color: var(--black);
   font-family: var(--font-family-roboto);
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-m);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 27.5px;
@@ -54,48 +54,11 @@
   width: 234px;
 }
 
-.homeepage .frame-1 {
-  align-items: flex-start;
-  background-color: var(--white);
-  border: 1px solid;
-  border-color: var(--black);
-  display: flex;
-  height: 92px;
-  margin-left: 68px;
-  margin-top: 25px;
-  padding: 25px 37px;
-  width: 686px;
-}
-
 .homeepage .password {
   letter-spacing: 0;
   line-height: 27.5px;
   margin-left: 68px;
-  margin-top: 83px;
+  margin-top: 200px;
   min-height: 46px;
   width: 234px;
-}
-
-.homeepage .frame-1-1 {
-  align-items: flex-start;
-  background-color: var(--white);
-  border: 1px solid;
-  border-color: var(--black);
-  display: flex;
-  height: 92px;
-  margin-left: 68px;
-  margin-top: 64px;
-  padding: 25px 37px;
-  width: 686px;
-}
-
-.homeepage .type-here-1 {
-  color: #979797;
-  font-family: var(--font-family-roboto);
-  font-size: var(--font-size-s);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 27.5px;
-  min-height: 39px;
-  width: 612px;
 }
