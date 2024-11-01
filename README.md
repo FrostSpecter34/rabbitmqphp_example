@@ -4,7 +4,7 @@ Files in folders are what have been in use (some pages in frontend main are not 
 
 Work Allocation:
 
-Databases:
+Databases: Mario Levano
 
 Front-end (web page): James Quintas
 
