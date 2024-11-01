@@ -84,6 +84,30 @@ function addService($userId, $serviceDetails) {
     $connection->close();
 }
 
+// Cancels a subscription
+function cancelService($serviceId) {
+    $connection = dbConnection();
+
+    $stmt = $connection->prepare('DELETE FROM Services WHERE id = ?');
+
+    if ($stmt) {
+        $stmt->bind_param('i', $serviceId);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return "Service with ID $serviceId successfully canceled.\n";
+        } else {
+            return "Error: Unable to cancel service or service not found.\n";
+        }
+
+        $stmt->close();
+    } else {
+        return "Error preparing SQL statement: " . $connection->error . PHP_EOL;
+    }
+
+    $connection->close();
+}
+
 // Updates payment information
 function updatePayment($userId, $paymentInfo) {
     $connection = dbConnection();
@@ -104,6 +128,32 @@ function updatePayment($userId, $paymentInfo) {
         $stmt->close();
     } else {
         echo "Error preparing SQL statement: " . $connection->error . PHP_EOL;
+    }
+
+    $connection->close();
+}
+
+// Fetch user's subscriptions
+function getUserSubscriptions($userId) {
+    $connection = dbConnection();
+
+    $stmt = $connection->prepare('SELECT * FROM Services WHERE user_id = ?');
+
+    if ($stmt) {
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $subscriptions = [];
+        while ($row = $result->fetch_assoc()) {
+            $subscriptions[] = $row;
+        }
+
+        $stmt->close();
+        $connection->close();
+        return $subscriptions;
+    } else {
+        return "Error preparing SQL statement: " . $connection->error . PHP_EOL;
     }
 
     $connection->close();

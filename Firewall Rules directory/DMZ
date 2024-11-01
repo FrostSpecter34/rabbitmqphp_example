@@ -1,6 +1,6 @@
 sudo apt-get install ufw -y
-sudo ufw allow from <WebServerIP> to any port 5672 proto tcp
-sudo ufw allow out to <DatabaseIP> port 3306 proto tcp
+sudo ufw allow from  to any port 5672 proto tcp
+sudo ufw allow out to 172.25.205.131 port 3306 proto tcp
 sudo ufw default deny incoming
 sudo ufw default deny outgoing
 sudo ufw enable
