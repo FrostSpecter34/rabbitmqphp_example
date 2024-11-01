@@ -15,14 +15,6 @@ $channel->queue_declare('testQueue', false, true, false, false);
         $username = $data['username'] ?? '';
         $password = $data['password'] ?? '';
 
-    // Validate the credentials (Hardcoded, to be removed later when database lines work _*)
-    $isValid = ($username === 'yourusername' && $password === 'password'); // Example validation
-
-        // Prepare the response
-        $response = [
-            'success' => $isValid,
-            'message' => $isValid ? 'Login successful.' : 'Invalid username or password.',
-        ];
     // Validate the credentials (Database lines)
     $isValid = password_verify($password, $storedPassword);
 

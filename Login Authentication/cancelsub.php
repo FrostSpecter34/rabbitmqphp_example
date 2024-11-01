@@ -1,26 +1,25 @@
 <?php
 session_start();
+require_once 'testRabbitMQClient.php'; // Include your RabbitMQ client setup
 
 // Check if the subscription ID is provided
 if (isset($_GET['id'])) {
     $subscriptionId = $_GET['id'];
 
-    // Check if subscriptions exist in the session
-    if (isset($_SESSION['subscriptions'])) {
-        // Loop through the subscriptions to find the one to remove
-        foreach ($_SESSION['subscriptions'] as $index => $subscription) {
-            if ($subscription['id'] == $subscriptionId) {
-                // Remove the subscription from the session
-                unset($_SESSION['subscriptions'][$index]);
+    // Prepare the message to send to the DMZ server
+    $message = [
+        'action' => 'cancel_subscription',
+        'subscription_id' => $subscriptionId
+    ];
 
-                // Re-index the array
-                $_SESSION['subscriptions'] = array_values($_SESSION['subscriptions']);
+    // Send the message to RabbitMQ and wait for the response from the DMZ server
+    $response = sendRequestToRabbitMQ($message);
 
-                // Set a success message
-                $_SESSION['message'] = 'Subscription cancelled successfully.';
-                break;
-            }
-        }
+    // Check the response from the DMZ server
+    if ($response['status'] == 'success') {
+        $_SESSION['message'] = 'Subscription cancelled successfully.';
+    } else {
+        $_SESSION['message'] = 'Error: ' . $response['message'];
     }
 }
 

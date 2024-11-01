@@ -1,63 +1,49 @@
 <?php
 session_start();
-//require_once 'testRabbitMQServer.php';
-
-// Fetch subscriptions from the database via RabbitMQ
-//$subscriptions = fetchSubscriptions();
-//$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'name';
-//usort($subscriptions, function($a, $b) use ($sort_by) {
-//    return strcmp($a[$sort_by], $b[$sort_by]);
-//});
-// Initialize subscriptions array if it doesn't exist
-if (!isset($_SESSION['subscriptions'])) {
-  $_SESSION['subscriptions'] = [];
-}
+require_once 'testRabbitMQClient.php'; // Include your RabbitMQ client setup
 
 // Check for success message to display
 $message = '';
 if (isset($_SESSION['message'])) {
-  $message = $_SESSION['message'];
-  unset($_SESSION['message']);
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);
 }
 
-// Sorting logic (if needed)
-$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'name';
+// Define the sort criteria based on GET parameters
+$sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'website';
+$order_by = 'website'; // Default sort column
+$order_criteria = 'ASC';
 
-// Sort subscriptions based on the selected criteria
-usort($_SESSION['subscriptions'], function($a, $b) use ($sort_by) {
-  switch ($sort_by) {
-      case 'website':
-          return strcmp($a['website'], $b['website']);
-      case 'card_type':
-          // Sort by card type (non-blank first, then alphabetical)
-          if (empty($a['card_type']) && !empty($b['card_type'])) {
-              return 1; // a is blank, b is not
-          } elseif (!empty($a['card_type']) && empty($b['card_type'])) {
-              return -1; // a is not blank, b is
-          } else {
-              return strcmp($a['card_type'], $b['card_type']); // alphabetical order
-          }
-      case 'card_number':
-          // Sort by card number (non-blank first, then numerical order)
-          if (empty($a['card_number']) && !empty($b['card_number'])) {
-              return 1; // a is blank, b is not
-          } elseif (!empty($a['card_number']) && empty($b['card_number'])) {
-              return -1; // a is not blank, b is
-          } else {
-              return strcmp($a['card_number'], $b['card_number']); // numerical order
-          }
-      case 'paypal':
-          // Sort by PayPal (yes first, no last)
-          if ($a['paypal'] === 'yes' && $b['paypal'] !== 'yes') {
-              return -1; // a is yes, b is not
-          } elseif ($a['paypal'] !== 'yes' && $b['paypal'] === 'yes') {
-              return 1; // a is not yes, b is
-          } else {
-              return 0; // both are the same
-          }
-  }
-  return 0; // Fallback in case no criteria match
-});
+switch ($sort_by) {
+    case 'website':
+        $order_by = 'website';
+        $order_criteria = 'ASC';
+        break;
+    case 'card_type':
+        $order_by = 'card_type';
+        $order_criteria = 'ASC';
+        break;
+    case 'card_number':
+        $order_by = 'card_number';
+        $order_criteria = 'ASC';
+        break;
+    case 'paypal':
+        $order_by = 'paypal DESC';
+        break;
+}
+
+// Prepare the message to send to the DMZ server
+$message = [
+    'action' => 'fetch_subscriptions',
+    'sort_by' => $sort_by,
+    'order' => $order_by . ' ' . $order_criteria
+];
+
+// Send the message to RabbitMQ and wait for the response from the DMZ server
+$response = sendRequestToRabbitMQ($message);
+
+// Check if the response contains subscriptions
+$subscriptions = $response['subscriptions'] ?? [];
 ?>
 
 <!DOCTYPE html>
@@ -97,8 +83,8 @@ usort($_SESSION['subscriptions'], function($a, $b) use ($sort_by) {
         </form>
 
         <div class="subscriptions-list">
-            <?php if (!empty($_SESSION['subscriptions'])): ?>
-                <?php foreach ($_SESSION['subscriptions'] as $subscription): ?>
+            <?php if (!empty($subscriptions)): ?>
+                <?php foreach ($subscriptions as $subscription): ?>
                     <div class="subscription-item">
                         <div><strong>Website:</strong> <?php echo htmlspecialchars($subscription['website']); ?></div>
                         <div><strong>Card Type:</strong> <?php echo htmlspecialchars($subscription['card_type']); ?></div>

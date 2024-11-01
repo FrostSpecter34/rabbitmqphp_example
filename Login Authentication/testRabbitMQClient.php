@@ -5,14 +5,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-// Get the posted data
-$data = json_decode(file_get_contents('php://input'), true);
-$username = $data['username'] ?? '';
-$password = $data['password'] ?? '';
-
-// Prepare the message
-$messageBody = json_encode(['username' => $username, 'password' => $password]);
-
 // Connect to RabbitMQ
 $connection = new AMQPStreamConnection('127.0.0.1', 5672, 'test', 'test', 'testHost');
 $channel = $connection->channel();
@@ -24,6 +16,52 @@ list($callbackQueue, ,) = $channel->queue_declare("", false, false, true, false)
 $response = null;
 $corr_id = uniqid();
 
+// Prepare the message based on the request
+$data = json_decode(file_get_contents('php://input'), true);
+$requestType = $data['request_type'] ?? ''; // 'login', 'add_subscription', 'cancel_subscription', 'fetch_subscriptions'
+
+switch ($requestType) {
+    case 'login':
+        $username = $data['username'] ?? '';
+        $password = $data['password'] ?? '';
+
+        // Prepare the message for login
+        $messageBody = json_encode(['request_type' => 'login', 'username' => $username, 'password' => $password]);
+        break;
+
+    case 'add_subscription':
+        // Prepare the message for adding a subscription
+        $subscription = [
+            'website' => $data['website'] ?? '',
+            'card_type' => $data['card_type'] ?? '',
+            'card_number' => $data['card_number'] ?? '',
+            'paypal' => $data['paypal'] ?? '',
+            'price' => $data['price'] ?? '',
+            'renewal_date' => $data['renewal_date'] ?? '',
+            'cancellation_date' => $data['cancellation_date'] ?? ''
+        ];
+        $messageBody = json_encode(['request_type' => 'add_subscription', 'subscription' => $subscription]);
+        break;
+
+    case 'cancel_subscription':
+        $subscriptionId = $data['id'] ?? '';
+        // Prepare the message for canceling a subscription
+        $messageBody = json_encode(['request_type' => 'cancel_subscription', 'id' => $subscriptionId]);
+        break;
+
+    case 'fetch_subscriptions':
+        // Prepare the message for fetching subscriptions
+        $messageBody = json_encode(['request_type' => 'fetch_subscriptions']);
+        break;
+
+    default:
+        // Handle invalid request
+        header('HTTP/1.1 400 Bad Request');
+        echo json_encode(['error' => 'Invalid request type.']);
+        exit;
+}
+
+// Handle the response
 $channel->basic_consume($callbackQueue, '', false, true, false, false, function ($msg) use (&$response, $corr_id) {
     if ($msg->get('correlation_id') == $corr_id) {
         $response = $msg->body;
@@ -50,4 +88,5 @@ if (!$response) {
 // Send the response back to the client
 header('Content-Type: application/json');
 echo $response;
+
 ?>

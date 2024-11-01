@@ -1,11 +1,6 @@
 <?php
-// add_subscription.php
 session_start();
-
-// Initialize subscriptions array if it doesn't exist
-if (!isset($_SESSION['subscriptions'])) {
-    $_SESSION['subscriptions'] = [];
-}
+require_once 'testRabbitMQClient.php'; // Include your RabbitMQ client setup
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -15,17 +10,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'card_type' => $_POST['card_type'],
         'card_number' => $_POST['card_number'],
         'paypal' => $_POST['paypal'],
-        'price' => $_POST['price'],  // New field for price
-        'renewal_date' => $_POST['renewal_date'],  // New field for renewal date
-        'cancellation_date' => $_POST['cancellation_date']  // New field for cancellation date
+        'price' => $_POST['price'],  
+        'renewal_date' => $_POST['renewal_date'],  
+        'cancellation_date' => $_POST['cancellation_date']  
     ];
 
-    // Add subscription to session
-    $_SESSION['subscriptions'][] = $subscription;
+    // Prepare the message to send to the DMZ server
+    $message = [
+        'action' => 'add_subscription',
+        'subscription' => $subscription
+    ];
 
-    // Redirect to main page with a success message
-    $_SESSION['message'] = "Subscription added successfully!";
-    header("Location: main.php");
+    // Send the message to RabbitMQ and wait for the response from the DMZ server
+    $response = sendRequestToRabbitMQ($message);
+
+    // Check the response from the DMZ server
+    if ($response['status'] == 'success') {
+        $_SESSION['message'] = 'Subscription added successfully!';
+    } else {
+        $_SESSION['message'] = 'Error: ' . $response['message'];
+    }
+
+    // Redirect to main page
+    header('Location: main.php');
     exit();
 }
 ?>
