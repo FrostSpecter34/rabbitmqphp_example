@@ -2,8 +2,8 @@
 require_once('../path.inc');
 require_once('../get_host_info.inc');
 require_once('../rabbitMQLib.inc');
-require_once('RabbitMQClient.php');
-require_once('db_connect.php');
+require_once(__DIR__ . 'RabbitMQClient.php');
+require_once(__DIR__ .'db_connect.php');
 
 // Registers a new user
 function registerUser($username, $email, $password) {
