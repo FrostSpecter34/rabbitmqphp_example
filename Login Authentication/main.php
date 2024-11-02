@@ -55,7 +55,7 @@ $subscriptions = $response['subscriptions'] ?? [];
 </head>
 <body>
     <header>
-        <h1 class="sudo-squad-sub-manager">SUDO SQUAD SUB MANAGER</h1>
+        <h1 class="sudo-squad-sub-manager">Subscription Manager</h1>
     </header>
     <nav>
         <ul>
