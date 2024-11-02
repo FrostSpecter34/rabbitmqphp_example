@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['loggedin'] = true;
 
                 // Redirect to a protected page if login is successful
-                header('Location: http://www.sample.com/main.php'); 
+                header('Location: http://www.sample.com/homepage.php'); 
                 exit;
             }
         } else {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
 </head>
 <body>
     <div class="container-center-horizontal">

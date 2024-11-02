@@ -1,157 +1,77 @@
-/* Reset styles */
-body, h1, h2, p, ul, li, form {
-  margin: 0;
-  padding: 0;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-/* Set a background color and font styles for the entire page */
 body {
-  background: linear-gradient(135deg, #f2f2f2, #e0e0e0);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
   color: #333;
-}
-
-/* Centering container */
-.container-center-horizontal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-/* Main content styling */
-.frame-3 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 30px;
-  max-width: 800px;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Header styling */
-header {
-  background-color: #444;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-}
-
-h1.sudo-squad-sub-manager {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-/* Navigation bar styling */
-nav {
-  background-color: #222;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-}
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Main content area */
-main {
-  background-color: #fff;
-  margin: 20px auto;
+  margin: 0;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.my-account, .active-subscriptions {
-  font-size: 18px;
-  margin: 15px 0;
-  text-align: center;
-  color: #555;
-}
-
-/* Form and sorting dropdown */
-form {
-  text-align: center;
+h1 {
+  color: #0073e6;
   margin-bottom: 20px;
 }
-
+.sort-menu {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
 label {
   font-weight: bold;
   margin-right: 10px;
 }
-
-select#sort_by {
-  padding: 5px 10px;
+select {
+  padding: 5px;
+  border-radius: 4px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  font-size: 1rem;
 }
-
-/* Subscription items styling */
-.subscriptions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.subscription-item {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 15px;
+.subscription-list {
+  width: 100%;
+  max-width: 600px;
+  font-size: 1rem;
+  margin-top: 20px;
+  background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.subscription-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
 }
-
-.subscription-item div {
-  font-size: 16px;
+.subscription-item:last-child {
+  border-bottom: none;
 }
-
-/* Details dropdown */
-.subscription-details select {
-  padding: 5px;
+.delete-button {
+  padding: 5px 10px;
+  color: white;
+  background-color: #ff4d4d;
+  border: none;
+  cursor: pointer;
   border-radius: 4px;
-  margin-top: 5px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
 }
-
-/* Links */
+.delete-button:hover {
+  background-color: #cc0000;
+}
+.active-subscriptions {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
 a {
-  color: #ff0066;
+  color: #0073e6;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 15px;
-  display: block;
-  text-align: center;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: color 0.3s;
 }
-
 a:hover {
-  color: #ff3399;
-}
-
-/* Footer styling */
-footer {
-  background-color: #444;
-  color: #fff;
-  text-align: center;
+  color: #005bb5;
 }

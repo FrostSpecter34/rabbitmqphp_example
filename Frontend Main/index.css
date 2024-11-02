@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container-center-horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .homeepage.screen {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-bar {
+    background-color: #0073e6;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .sudo-squad-sub-manager {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .login-here {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .username,
+  .password {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 20px 0 10px;
+    text-align: left;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus {
+    border-color: #0073e6;
+    outline: none;
+  }

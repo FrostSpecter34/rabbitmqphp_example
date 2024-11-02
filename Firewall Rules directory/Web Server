@@ -3,7 +3,7 @@ sudo ufw enable
 sudo ufw status
 sudo ufw allow 80
 sudo ufw allow 443
-sudo ufw allow out to <DMZ_IP> port 5672 proto tcp
+sudo ufw allow out to 172.25.182.53 port 5672 proto tcp
 sudo ufw default deny incoming
 sudo ufw default deny outgoing
 sudo ufw enable

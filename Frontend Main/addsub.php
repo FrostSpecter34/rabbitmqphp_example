@@ -50,32 +50,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 <form action="addsub.php" method="POST">
     <div class="container-center-horizontal">
-        <div class="frame-6 screen">
-            <h1 class="title roboto-normal-black-64px">Add Subscriptions</h1>
+        <div class="frame-3">
+            <h1 class="title">Add Subscriptions</h1>
 
-            <div class="website roboto-normal-black-64px">Website</div>
+            <div class="website">Website</div>
             <input name="website" type="text" class="website-input" placeholder="Type here" required />
 
-            <br><br>
-            
-            <div class="card roboto-normal-black-64px">Card Type</div>
-            <input name="card_type" type="text" class="card-type-input" placeholder="Type here" required />
-            
-            <div class="card roboto-normal-black-64px">Card Number</div>
-            <input name="card_number" type="text" class="card-number-input" placeholder="Type here" required />
+            <div class="card">Card Type</div>
+            <input name="card_type" type="text" class="card type-input" placeholder="Type here" required />
 
-            <div class="website roboto-normal-black-64px">Price</div>
+            <div class="card">Card Number</div>
+            <input name="card_number" type="text" class="card number-input" placeholder="Type here" required />
+
+            <div class="website">Price</div>
             <input name="price" type="text" class="price-input" placeholder="Enter price" required />
 
-            <div class="website roboto-normal-black-64px">Renewal Date</div>
+            <div class="website">Renewal Date</div>
             <input name="renewal_date" type="date" class="renewal-date-input" required />
 
-            <div class="website roboto-normal-black-64px">Cancellation Date</div>
+            <div class="website">Cancellation Date</div>
             <input name="cancellation_date" type="date" class="cancellation-date-input" />
 
-            <div class="website roboto-normal-black-64px">or</div>
+            <div class="website">or</div>
 
-            <div class="website roboto-normal-black-64px">PayPal</div>
+            <div class="website">PayPal</div>
             <input name="paypal" type="text" class="paypal-input" placeholder="Type here" />
 
             <br> 
