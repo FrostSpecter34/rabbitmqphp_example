@@ -2,41 +2,104 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <link rel="stylesheet" type="text/css" href="css/loginhomeepage.css" />
     <link rel="stylesheet" type="text/css" href="css/loginstyleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/loginglobals.css" />
+    <style>
+    
+      * {
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container-center-horizontal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .homeepage.screen {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-bar {
+        background-color: #0073e6;
+        padding: 15px 0;
+        margin-bottom: 30px;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .sudo-squad-sub-manager {
+        color: #ffffff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .login-here {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .username,
+      .password {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 20px 0 10px;
+        text-align: left;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus {
+        border-color: #0073e6;
+        outline: none;
+      }
+    </style>
   </head>
-  <body style="margin: 0; background: #ffffff">
+  <body>
     <input type="hidden" id="anPageName" name="page" value="homeepage" />
     <div class="container-center-horizontal">
       <div class="homeepage screen">
-        <div class="nav-bar"><h1 class="sudo-squad-sub-manager">SUDO SQUAD SUB MANAGER</h1></div>
-        <div class="login-here roboto-normal-black-48px">Login here</div>
-
-
-
-
-
+        <div class="nav-bar">
+          <h1 class="sudo-squad-sub-manager">SUDO SQUAD SUB MANAGER</h1>
+        </div>
+        <div class="login-here">Login here</div>
         
-        <div class="username roboto-normal-black-48px">Username</div>
+        <div class="username">Username</div>
+        <input name="username" type="text" class="username" placeholder="Type here" />
 
-
-        <input name="keyword" type="text" class="username" placeholder="Type here"/>
-
-
-
-        <div class="password roboto-normal-black-48px">Password</div>
-
-
-
-        <input name="keyword" type="text" class="password" placeholder="Type here"/>
-
-
-
+        <div class="password">Password</div>
+        <input name="password" type="text" class="password" placeholder="Type here" />
       </div>
     </div>
   </body>
