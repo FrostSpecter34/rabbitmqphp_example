@@ -7,7 +7,7 @@
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <style>
-    
+      
       * {
         box-sizing: border-box;
         font-family: "Roboto", sans-serif;
@@ -15,7 +15,7 @@
 
       body {
         margin: 0;
-        background-color: #f2f2f2;
+        background-color: #f7f7f7;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,7 +29,7 @@
         width: 100%;
       }
 
-      .homeepage.screen {
+      .frame-6.screen {
         background-color: #ffffff;
         padding: 40px;
         border-radius: 8px;
@@ -39,30 +39,16 @@
         text-align: center;
       }
 
-      .nav-bar {
-        background-color: #0073e6;
-        padding: 15px 0;
+      .title {
+        font-size: 2.5rem;
+        color: #333;
         margin-bottom: 30px;
-        border-radius: 8px 8px 0 0;
       }
 
-      .sudo-squad-sub-manager {
-        color: #ffffff;
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin: 0;
-      }
-
-      .login-here {
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 20px;
-      }
-
-      .username,
-      .password {
+      .website,
+      .card {
         font-size: 1.2rem;
-        color: #333;
+        color: #444;
         margin: 20px 0 10px;
         text-align: left;
       }
@@ -81,22 +67,37 @@
         border-color: #0073e6;
         outline: none;
       }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 1rem;
+        color: #0073e6;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: #005bb5;
+      }
     </style>
   </head>
   <body>
-    <input type="hidden" id="anPageName" name="page" value="homeepage" />
+    <input type="hidden" id="anPageName" name="page" value="frame-6" />
     <div class="container-center-horizontal">
-      <div class="homeepage screen">
-        <div class="nav-bar">
-          <h1 class="sudo-squad-sub-manager">SUDO SQUAD SUB MANAGER</h1>
-        </div>
-        <div class="login-here">Login here</div>
+      <div class="frame-6 screen">
+        <h1 class="title">Add Subscriptions</h1>
         
-        <div class="username">Username</div>
-        <input name="username" type="text" class="username" placeholder="Type here" />
-
-        <div class="password">Password</div>
-        <input name="password" type="text" class="password" placeholder="Type here" />
+        <div class="website">Website</div>
+        <input name="keyword" type="text" class="website" placeholder="Type here" />
+        
+        <div class="card">Card Type</div>
+        <input name="keyword" type="text" class="card type" placeholder="Type here" />
+        
+        <div class="card">Card Number</div>
+        <input name="keyword" type="text" class="card number" placeholder="Type here" />
+        
+        <a href="main.php">Return to account</a>
       </div>
     </div>
   </body>

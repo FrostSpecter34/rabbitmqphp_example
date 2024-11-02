@@ -1,8 +1,10 @@
 <?php
-require_once(__DIR__ . "/../vendor/autoload.php");
-require_once('db_connect.php');
-require_once('db_functions.php');
-require_once('rabbitmq_connect.php');
+require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../path.inc";
+require_once __DIR__ . "/../get_host_info.inc";
+require_once __DIR__ . "/../rabbitMQLib.inc";
+require_once(__DIR__ . "/RabbitMQClient.php");
+require_once(__DIR__ . "/db_connect.php");
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -20,6 +22,9 @@ function requestProcessor($messageBody)
             case 'register':
                 registerUser($data['username'], $data['email'], $data['password']);
                 break;
+            case 'login':
+                userLogin($data['username'], $data['email'], $data['password']);
+                break;
             case 'addService':
                 addService($data['user_id'], $data['service_Details']);
                 break;
@@ -35,11 +40,9 @@ function requestProcessor($messageBody)
     }
 }
 
-$connection = new AMQPStreamConnection('127.0.0.1', 5672, 'mdl35', 'mdl35it490');
+$connection = new AMQPStreamConnection('172.25.182.53', 5672, 'adam', 'adam', 'DMZ_MAIN');
 $channel = $connection->channel();
-
-$queueName = 'TestQueue';
-$channel->queue_declare($queueName, false, true, false, false);
+$queueName = 'TestQueue';$channel->queue_declare($queueName, false, true, false, false);
 
 $callback = function($msg) {
     echo ' [x] Received ', $msg->body, "\n";
