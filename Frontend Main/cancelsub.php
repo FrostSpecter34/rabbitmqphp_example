@@ -24,6 +24,6 @@ if (isset($_GET['id'])) {
 }
 
 // Redirect back to the main page
-header('Location: main.php');
+header('Location: homepage.php');
 exit();
 ?>
