@@ -1,8 +1,8 @@
 <?php
-require 'vendor/autoload.php';
+    require_once __DIR__ . '/../vendor/autoload.php'; 
 
-use PhpAmqpLib\Connection\AMQPStreamConnection;
-use PhpAmqpLib\Message\AMQPMessage;
+    use PhpAmqpLib\Connection\AMQPStreamConnection;
+    use PhpAmqpLib\Message\AMQPMessage;
         
         $hostname = '127.0.0.1';
         $username = 'adam';
@@ -11,15 +11,15 @@ use PhpAmqpLib\Message\AMQPMessage;
         $destinationQueue ='testqueue';
         
 
-$connection = new AMQPStreamConnection('localhost', 5672, 'adam', 'adam', 'testHost');
-$channel = $connection->channel();
+    $connection = new AMQPStreamConnection('172.25.182.53', 5672, 'adam', 'adam', 'DMZ_MAIN');
+    $channel = $connection->channel();
 //Declare source queue
-$channel->queue_declare($sourceQueue, false, true, false, false, false, []);
+    $channel->queue_declare($sourceQueue, false, true, false, false, false, []);
 
-$channel->queue_declare($destinationQueue, false, true, false, false, false, []);
+    $channel->queue_declare($destinationQueue, false, true, false, false, false, []);
 
 //Publish message to database
-$callback = function ($msg) use ($channel,$destinationQueue) {
+    $callback = function ($msg) use ($channel,$destinationQueue) {
     //Add msg processing here if needed
     $channel->basic_publish($msg, '', $destinationQueue);
 };
