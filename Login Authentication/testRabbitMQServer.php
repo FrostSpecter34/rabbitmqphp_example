@@ -1,13 +1,15 @@
 <?php
 // Include necessary libraries and database functions
 require_once __DIR__ . '/vendor/autoload.php';
+
+
 require_once __DIR__ . '/db_functions.php'; // Ensure your database functions are included
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 // Connect to RabbitMQ
-$connection = new AMQPStreamConnection('172.25.205.131', 5672, 'test', 'test', 'DMZ_MAIN');
+$connection = new AMQPStreamConnection('172.25.205.131', 5672, 'adam', 'adam', 'DMZ_MAIN');
 $channel = $connection->channel();
 $channel->queue_declare('testQueue', false, true, false, false);
 

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Redirect to main page
-    header('Location: main.php');
+    header('Location: homepage.php');
     exit();
 }
 ?>
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <br> 
             <button type="submit">Add Subscription</button>
-            <a href="main.php" class="return-link">Return to account</a>
+            <a href="homepage.php" class="return-link">Return to account</a>
         </div>
     </div>
 </form>
