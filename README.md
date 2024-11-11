@@ -10,4 +10,4 @@ Front-end (web page): James Quintas
 
 Authentication and firewall: Andrew Rodriguez
 
-Back-end: Adam Milewski
+Back-end: 
