@@ -6,4 +6,6 @@ Front End: Configuration of Apache Web Server To Host Our Websites/Pages
 2. In the hosts files, we may see the ip addresses and the domain names pointed to each ip address
 3. In this file, we could add another domain using the ip address that belonged to the localhost
 4. By doing so, it will showcase the pages that you would want to see but before there, we must go to the web browser, enter the ip address and delete all the browser history
-5. Since, the apache server will be running, we would also need to use this command sudo service apache2 stop 
+5. Since, the apache server will be running, we would also need to use this command sudo service apache2 stop and then perform sudo service apache2 start to basically have it booted as a restart.   
+6. A key thing to remember is to add all the files that you want to run through the apache server to /var/www/html folder because that is the folder which is connected to the apache server
+6. After which When I enter http://project.com, it automatically 
