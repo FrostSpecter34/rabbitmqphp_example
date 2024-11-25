@@ -26,10 +26,8 @@ hashing password
 
 Work Allocation:
 
-Databases: Mario Levano
-
 Front-end (web page): James Quintas
 
-Authentication and firewall: Andrew Rodriguez
+Authentication and Firewall: Andrew Rodriguez
 
-Back-end: 
+Back-end: Mario Levano
