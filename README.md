@@ -26,6 +26,8 @@ hashing password
 
 Work Allocation:
 
+Front-End - Hami Chauhan
+
 Front-end (web page): James Quintas
 
 Authentication and Firewall: Andrew Rodriguez
