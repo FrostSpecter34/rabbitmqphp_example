@@ -49,6 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+    <html>
+    <body>
+    <!-- Login Form -->
+    <div class="container mt-5">
+        <h2 class="mb-4">Login</h2>
  <form action="" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
