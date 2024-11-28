@@ -1,1 +1,15 @@
+[Unit]
+Description= Nagios Service
+After=network.target
 
+[Service]
+Type=simple
+User=mario
+Group=mario
+WorkingDirectory=/home/mario/Documents/GitHub/IT-490/dmz
+ExecStart=/usr/bin/php
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
