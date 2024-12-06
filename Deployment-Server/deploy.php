@@ -26,9 +26,11 @@ class Deployer
     
 
     
-function rollbackTo(){
+function rollbackTo(bundleName, versionNumber, package_contents){
     if (versionNumber == packageTable(versionNumber))
+        zip = retrive package_contents.zip
         
-
+              
+    
     
 }
