@@ -4,5 +4,7 @@ Database Used for IT490 Project - MySQL
 2. Once those are installed, visiting the ./mysqlconnect.php file and change the username to testUser
 3. To test the mysql, we would need to first create a database table using create a database
 4. We can then add users, grant them privileges, create tables with new fields, insert values.
-
-
+5. For the rabbitMQ_db.ini file created, you would need to replace the BROKER_HOST field's IP address to your rabbitmq machine.
+6. For the rabbitMQ_dmz.ini file created, you would also need to replace the BROKER_HOST field's IP address to your rabbitmq machine.
+7. For the rabbitMQ_rmq.ini file created, you would also need to replace the BROKER_HOST field's IP address to your rabbitmq machine
+8. For the db_listner.php file created, use it to communicate with the rabbitmq server.
