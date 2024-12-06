@@ -6,9 +6,29 @@ class Deployer
     private $QAServer;
     private $ProdServer;
 
-      function __DeployTo()
+      function __deployTo()
     {
+        
      $this->DevServer = new rabbitMQClient('DevServer');
-     $this->DevServer = new rabbitMQClient('QAServer');
-     $this->DevServer = new rabbitMQClient('ProdServer');
+     $this->QAServer = new rabbitMQClient('QAServer');
+     $this->ProdServer = new rabbitMQClient('ProdServer');
     }
+
+
+    function deployWhat(bundleName, versionNumber, package_contents){
+        $zippedFiles = new bundle_files();
+        OpenFiles = retrive bundle_files();
+        $dbSession = $sql->start_session($dbHost, $dbUser, $dbPass);
+        
+    
+    }
+    
+    
+
+    
+function rollbackTo(){
+    if (versionNumber == packageTable(versionNumber))
+        
+
+    
+}
