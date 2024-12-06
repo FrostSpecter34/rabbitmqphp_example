@@ -8,11 +8,11 @@ deployment
 
 hashing password
 
- responsive website
+ responsive website - Done By Hami Chauhan
 
  hot stand-by
 
- SSL
+ SSL - Done By Hami Chauhan
 
  log system
 
