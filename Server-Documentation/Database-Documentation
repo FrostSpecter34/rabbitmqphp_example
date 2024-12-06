@@ -1,1 +1,8 @@
+Database Used for IT490 Project - MySQL
+
+1. Setting up MySQL requires to install the php-mysql and installing the mysql-server. 
+2. Once those are installed, visiting the ./mysqlconnect.php file and change the username to testUser
+3. To test the mysql, we would need to first create a database table using create a database
+4. We can then add users, grant them privileges, create tables with new fields, insert values.
+
 
