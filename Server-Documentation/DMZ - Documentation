@@ -1,1 +1,7 @@
+Demilitarized zone Documentation
 
+1. On the DMZ virtual machine, in the rabbitMQ_db.ini file created, change the BROKER_HOST field’s IP address to the IP address of the RabbitMQ virtual machine. 
+2. On the DMZ virtual machine, in the rabbitMQ_rmq.ini file file created, change the BROKER_HOST field’s IP address to the IP address of the RabbitMQ virtual machine. 
+3. In the dmzListner.php file created, the dmz will listen to messages passed by RabbitMQ
+4. On the DMZ virtual machine, we need files like get_host_info.inc file, host.ini file, local.ini file, path.inc file, rabbitMQLib.inc
+5. On the DMZ virtual machine, in the rabbitMQ_dmz.ini file created, change the BROKER_HOST field’s IP address to the IP address of the RabbitMQ virtual machine.
