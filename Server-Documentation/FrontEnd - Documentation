@@ -5,5 +5,7 @@ Front End: Configuration of Apache Web Server To Host Our Websites/Pages
 1. After having the apache server installed, we must visit the /etc/ directory and check the hosts file in that directory
 2. In the hosts files, we may see the ip addresses and the domain names pointed to each ip address
 3. In this file, we could add another domain using the ip address that belonged to the localhost
-4. By doing so, it will showcase the pages that you would want to see but before there, we must go to the web browser, enter the ip address and delete all the browser history
-5. Since, the apache server will be running, we would also need to use this command sudo service apache2 stop 
+4. By doing so, it will showcase the pages that you would want to see but before that, we must go to the web browser, enter the ip address and delete all the browser history. 
+5. One must then start the apache server and check its status to see if its actually running
+6. All the files that you want to run through the Apache web server must be located in /var/www/html folder. 
+7. On the web browser, you could either enter the localhost or the new domain that you had created to showcase the webpages.
