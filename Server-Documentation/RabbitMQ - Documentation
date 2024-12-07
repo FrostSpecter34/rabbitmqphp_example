@@ -1,1 +1,7 @@
+RabbitMQ Documentation
+
+1. Visit the testRabbitMQClient.php file and make sure that it has the path.inc file, get_host_ info.inc file and rabbitMQLib.inc file as require_once.  
+2. Visit the rabbitMQLib.inc file and make sure that it has the get_host_ info.inc file as require_once.  
+3. Visit the testRabbitMQ.ini file which contains the configuration needed to successfully connect to the rabbitMQ. 
+4. In order to have the testRabbitMQServer file run successfully, you need to install the php-amqp. 
 
