@@ -1,0 +1,18 @@
+Ossim 
+
+OSSIM Configuration Steps
+
+1. Download the ISO image file from the AlienVault website (should appear when searching OSSIM on google)
+2. Create a new virtual machine using the ISO image
+3. Allocate at least 2 processors and a minimum of 4000-5000 MB of base memory
+4. Start the virtual machine, and select the OSSIM installation process (should be the first option)
+5. Enter an IP address similar to the host machine (For example, if the host computer has an IP of 10.120.34.142, assign 10.120.34.150 to OSSIM)
+6. Assign a subnet mask identical to that of the host machine (if not visible, go with default of 255.255.255.0)
+7. Leave the gateway and host name blank
+8. Create a password for the virtual machine, preferably a decently strong password that is NOT JUST root again
+9. Keep the other keyboard and time zone options the same as what you have for whatever else you use (keep eastern time if in eastern time zone)
+10. Wait an excruciatingly long amount of time for the installation to complete
+11. When a black terminal-like page appears, login with username root and the password you set up
+12. When in a green settings page, go to jailbreak system, and in terminal, do zerotier set up (take this message out later, but this still needs to be done and i did not test this on my home computer because I'm planning on using OSSIM for my own home network and don't wanna mess things up by accident, sorry about that and sorry for typing this really long message)
+13. Go to the host machine browser or another virtual machine's browser and enter the IP address of the OSSIM machine, which should then prompt you for account creation, complete that and write down the login credentials you set up
+14. Use the new login credentials to login to the OSSIM web client, and done, you should now have access to OSSIM's functions. Go through the tutorials, scan the network for other devices, etc.
