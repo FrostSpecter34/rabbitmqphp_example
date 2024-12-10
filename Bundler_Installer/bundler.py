@@ -5,7 +5,7 @@ from datetime import datetime
 # Configuration
 SOURCE_DIR = "/home/mdl35/rabbitmqphp_example"  # Directory containing files to bundle
 OUTPUT_DIR = "/home/mdl35/bundles"       # Directory to save the .zip file
-BUNDLE_NAME = f"bundle_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"
+BUNDLE_NAME = f"bundle_{datetime.now().strftime('%Y%m%d_%H%M%S')}_VER_.zip"
 
 def bundle_files():
     # Ensure output directory exists
