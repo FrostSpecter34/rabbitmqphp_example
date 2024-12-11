@@ -2,9 +2,12 @@ import os
 import zipfile
 from datetime import datetime
 
+# Get the current user's home directory
+HOME_DIR = os.path.expanduser("~")
+
 # Configuration
-SOURCE_DIR = "/home/mdl35/rabbitmqphp_example"  # Directory containing files to bundle
-OUTPUT_DIR = "/home/mdl35/bundles"       # Directory to save the .zip file
+SOURCE_DIR = os.path.join(HOME_DIR, "rabbitmqphp_example")  # Directory containing the bundle
+OUTPUT_DIR = HOME_DIR  # Directory to save the .zip file
 BUNDLE_NAME = f"bundle_{datetime.now().strftime('%Y%m%d_%H%M%S')}_VER_.zip"
 
 def bundle_files():
@@ -26,7 +29,7 @@ def bundle_files():
                 bundle.write(file_path, arcname)
                 print(f"Added: {file_path} as {arcname}")
 
-    print(f"Bundle created: {bundle_path}")
+    print(f"Bundle created at: {bundle_path}")
 
 if __name__ == "__main__":
     bundle_files()

@@ -4,13 +4,16 @@ import zipfile
 import shutil
 import sys
 
+# Get the current user's home directory
+HOME_DIR = os.path.expanduser("~")
+
 # Configuration
-BUNDLE_DIR = "/home/mdl35/bundles"  # Path to the .zip file to install
-INSTALL_DIR = "/home/mdl35/tester"  # Where files will be installed
+BUNDLE_DIR = HOME_DIR  # Path to the .zip file to install
+INSTALL_DIR = os.path.join(HOME_DIR, "installed_bundle")
 TEMP_DIR = "/tmp/bundle"  # Temporary location to unzip the files
 
 def get_latest_bundle():
-    """Identify the latest bundle in the BUNDLE_DIR."""
+    """Update the latest bundle in the BUNDLE_DIR."""
     bundles = [os.path.join(BUNDLE_DIR, f) for f in os.listdir(BUNDLE_DIR) if f.endswith('.zip')]
     if not bundles:
         raise FileNotFoundError("No bundle files found in the specified directory.")
@@ -22,18 +25,29 @@ def get_latest_bundle():
     return latest_bundle
 
 def extract_bundle(bundle_path):
-    """Extract the bundle to a temporary directory."""
+    """Extracts the bundle to a temporary directory."""
     # Create a temporary directory to extract the bundle
-    if not os.path.exists(TEMP_DIR):
-        os.makedirs(TEMP_DIR)
+    if os.path.exists(TEMP_DIR):
+        # Clean up the existing temporary directory
+        shutil.rmtree(TEMP_DIR)
+        print(f"Existing temporary directory {TEMP_DIR} removed.")
+
+    # Create a new temporary directory
+    os.makedirs(TEMP_DIR)
+    print(f"Temporary directory {TEMP_DIR} created.")
 
     # Extract the .zip file to TEMP_DIR
     with zipfile.ZipFile(bundle_path, 'r') as zip_ref:
         zip_ref.extractall(TEMP_DIR)
         print(f"Extracted {bundle_path} to {TEMP_DIR}")
-
 def install_files():
-    """Install files from the extracted bundle to the target directory."""
+    """Install files from the extracted bundle to the target directories."""
+    if not os.path.exists(INSTALL_DIR):
+        os.makedirs(INSTALL_DIR)
+        print(f"Install directory {INSTALL_DIR} created.")
+    else:
+        print(f"Install directory {INSTALL_DIR} already exists.")
+
     for root, dirs, files in os.walk(TEMP_DIR):
         # Create directories in the target location
         for directory in dirs:
@@ -48,19 +62,20 @@ def install_files():
             shutil.copy2(src_file, dest_file)  # Copy file with metadata
             print(f"Installed: {src_file} to {dest_file}")
 
+
 def clean_up():
-    """Remove the temporary extraction directory."""
+    """Removes the temporary files."""
     if os.path.exists(TEMP_DIR):
         shutil.rmtree(TEMP_DIR)
         print(f"Cleaned up temporary files in {TEMP_DIR}")
 
 def post_install():
-    """Perform any post-installation tasks, like restarting services."""
+    """Will restart services."""
     os.system("sudo systemctl restart apache2")  # Example: Restarting Apache2
     print("Post-installation tasks completed.")
 
 def main():
-    """Run the installation process."""
+    """Instalation proccess begins."""
     try:
         latest_bundle = get_latest_bundle()  # Find the latest bundle
         extract_bundle(latest_bundle)  # Extract it
