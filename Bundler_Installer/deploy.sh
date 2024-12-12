@@ -1,7 +1,19 @@
 #!/bin/bash
 
-# Define the bundle path and change depending on bundle version
-BUNDLE_PATH="/home/mdl35/bundles/bundle_20241210_115427_VER_1.0.zip"
+# Open a file/folder selection dialog using zenity
+BUNDLE_PATH=$(zenity --file-selection --title="Select Bundle File")
+
+# Check if the user selected a file (the return value will be empty if the user cancels)
+if [ -z "$BUNDLE_PATH" ]; then
+  echo "No bundle selected. Exiting."
+  exit 1
+fi
+
+# Check if the selected file exists
+if [[ ! -f "$BUNDLE_PATH" ]]; then
+  echo "Error: The specified bundle file does not exist."
+  exit 1
+fi
 
 # IP addresses and usernames for each VM
 # Mario PROD
