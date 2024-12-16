@@ -50,8 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
     <html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="main1.css" rel="stylesheet">
+</head>
     <body>
-    <!-- Login Form -->
     <div class="container mt-5">
         <h2 class="mb-4">Login</h2>
  <form action="" method="POST">
@@ -68,6 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p class="mt-3">Don't have an account? <a href="register.php">Register here</a>.</p>
     </div>
     <!-- Bootstrap JS -->
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
