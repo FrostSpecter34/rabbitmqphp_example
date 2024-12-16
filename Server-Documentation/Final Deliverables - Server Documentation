@@ -1,1 +1,5 @@
+SSL and Firewall Documentation 
 
+1. Ensure that apache web server has been started and running
+2. I created a SSL folder and set ownership and permissions of the folder
+3. I generated a certificate authority private key using this command 
