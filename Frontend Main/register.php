@@ -36,10 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($data['success']) && $data['success'] === true) {
                 // Set session variables
                 $_SESSION['username'] = $username;
-                $_SESSION['loggedin'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['password'] = $password;
 
                 // Redirect to a protected page if login is successful
-                header('Location: index.php'); 
+                header('Location: index.html'); 
                 exit;
             }
         } else {
@@ -51,9 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="main2.css" rel="stylesheet">
+</head>
 <body>
-    <!-- Registration Form -->
     <div class="container mt-5">
         <h2 class="mb-4">Register</h2>
 
@@ -80,3 +89,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
