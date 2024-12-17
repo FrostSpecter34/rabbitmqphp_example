@@ -30,10 +30,31 @@ $callback = function ($msg) {
 
             // Validate the credentials
             if ($storedPassword !== null && password_verify($password, $storedPassword)) {
-                $response = [
-                    'success' => true,
-                    'message' => 'Login successful.'
-                ];
+                $verifyCode = rand(100000, 999999); // Generate a 6-digit code
+
+                // Grab user email from the database
+                $userEmail = getUserEmailByUsername($username);
+
+                // Email subject and message
+                $subject = "Your 2FA Code";
+                $message = "Your 2FA code is as follows: " . $verifyCode;
+                $headers = "From: no-reply@sample.com";
+                
+                // Send the email
+                if (mail($userEmail, $subject, $message, $headers)) {
+                    $_SESSION['2fa_code'] = $verifyCode; // Store the code in a session
+                
+                    $response = [
+                        'success' => true,
+                        'message' => 'Code sent. Please verify.'
+                    ];
+                } else {
+                    error_log("Failed to send code to " . $userEmail);
+                    $response = [
+                        'success' => false,
+                        'message' => 'Failed to send code.'
+                    ];
+                }
             } else {
                 $response = [
                     'success' => false,
@@ -42,6 +63,25 @@ $callback = function ($msg) {
             }
             break;
 
+        case 'verify_2fa':
+            $username = $data['username'] ?? '';
+            $inputCode = $data['2fa_code'] ?? '';
+            session_start();
+
+            if ($_SESSION['2fa_code'] === $inputCode) {
+                unset($_SESSION['2fa_code']); // Clear 2FA code after verification
+                $response = [
+                    'success' => true,
+                    'message' => '2FA verification successful. Login complete.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Invalid 2FA code.'
+                ];
+            }
+            break;
+        
         case 'register':
             $username = $data['username'] ?? '';
             $email = $data['email'] ?? '';
