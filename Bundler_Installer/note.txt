@@ -1,0 +1,27 @@
+When installing the installer service, keep in mind to:
+
+1. Ensure that the installer.py is able to be executed using
+
+    chmod +x /home/<username>/rabbitmqphp_example/Bundler_Installer/installer.py
+
+2. Make sure that inotify-tools is installed on the machine
+
+    sudo apt-get inotify-tools
+
+3. Copy and place the installer.service file into /etc/systemd/system/ folder
+
+4. sudo systemctl daemon-reload
+
+5. sudo systemctl start installer.service
+
+6. Then, to make sure that the service starts upon booting or rebooting
+
+    sudo systemctl enable installer.service
+
+7. Finally, to check and verify that the service is running
+
+    sudo systemctl status installer.service
+
+8. If there are any issues, check journalctl in realtime using
+
+    sudo journalctl -u installer.service -f 

@@ -1,0 +1,15 @@
+[Unit]
+Description=Bundle Installer Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/env python3 /home/mdl35/rabbitmqphp_example/Bundler_Installer/installer.py
+Restart=always
+User=mdl35
+WorkingDirectory=/home/mdl35/rabbitmqphp_example/Bundler_Installer
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=installer
+
+[Install]
+WantedBy=multi-user.target
