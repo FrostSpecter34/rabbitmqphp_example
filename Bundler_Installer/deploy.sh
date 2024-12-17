@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Open a file/folder selection dialog using zenity
+# Opens up a window to select the bundle file.
 BUNDLE_PATH=$(zenity --file-selection --title="Select Bundle File")
 
-# Check if the user selected a file (the return value will be empty if the user cancels)
+# Will check if the user selected a file, if not, it will exit.
 if [ -z "$BUNDLE_PATH" ]; then
   echo "No bundle selected. Exiting."
   exit 1
@@ -11,11 +11,11 @@ fi
 
 # Check if the selected file exists
 if [[ ! -f "$BUNDLE_PATH" ]]; then
-  echo "Error: The specified bundle file does not exist."
+  echo "Error: That bundle file doesn't exist."
   exit 1
 fi
 
-# IP addresses and usernames for each VM
+# IP addresses, usernames, and passwords for each VM
 # Mario PROD
 VM1_USER="mdl35"
 VM1_IP="172.25.232.217"
@@ -50,7 +50,7 @@ VM6_IP="172.25.226.207"
 VM5_PASS="rahuljinka"
 
 
-# Function to automate scp with expect
+# This function automates the SCP transfer with expect
 copy_with_password() {
   local USER=$1
   local IP=$2
@@ -64,7 +64,7 @@ copy_with_password() {
 EOF
 }
 
-# Copy the bundle to each VM
+# Copies and sends the bundle to each VM
 echo "Copying to VM1..."
 copy_with_password "$VM1_USER" "$VM1_IP" "$VM1_PASS"
 

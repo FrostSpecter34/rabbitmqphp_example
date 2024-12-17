@@ -3,7 +3,7 @@ import zipfile
 from datetime import datetime
 import subprocess
 
-# Function to list files/folders and allow user to choose
+# Allows the user to select files and directories to include in the bundle
 def choose_files_to_include(directory):
     files_and_folders = []
     
@@ -15,12 +15,13 @@ def choose_files_to_include(directory):
         for name in dirs:
             files_and_folders.append(os.path.join(root, name))
     
-    # Display the files and folders
+    # Displays the files and folders
     print("\nAvailable files and directories to include in the bundle:")
     for i, item in enumerate(files_and_folders):
         print(f"{i+1}. {item}")
     
-    # Let the user select files/folders to include
+    # Let the user select files/folders to include in the bundle via numbers, separated by commas
+    # This is to allow the user to skip any unchanged or unnecessary files for the bundle
     selected_items = []
     while True:
         try:
@@ -44,37 +45,37 @@ def zenity_select_directory(title):
     return directory
 
 def create_bundle():
-    # Select output directory using zenity
+    # Opens a window to select the output directory
     output_directory = zenity_select_directory("Select Output Directory")
     if not output_directory:
         print("No output directory selected. Exiting.")
         return
 
-    # Select source directory using zenity
+    # Opens a window to select the source directory
     source_directory = zenity_select_directory("Select Source Directory")
     if not source_directory:
         print("No source directory selected. Exiting.")
         return
 
-    # Get bundle name
+    # Gets user input for the bundle name
     bundle_name_input = input("Enter the name for the bundle: ").strip()
     if not bundle_name_input:
         print("Bundle name cannot be empty. Exiting.")
         return
 
-    # Get version number
+    # Gets user input for the version number
     version = input("Enter the version number for this bundle (default is 1.0.0): ").strip() or "1.0.0"
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     bundle_name = f"{bundle_name_input}_{timestamp}_v{version}.zip"
     bundle_path = os.path.join(output_directory, bundle_name)
     
-    # Ensure output directory exists
+    # Ensures that the output directory exists
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
     files_to_include = choose_files_to_include(source_directory)
 
-    # Create the bundle (zip file)
+    # Creates the bundle as a .zip file
     with zipfile.ZipFile(bundle_path, 'w', zipfile.ZIP_DEFLATED) as bundle:
         for file_path in files_to_include:
             if os.path.exists(file_path):

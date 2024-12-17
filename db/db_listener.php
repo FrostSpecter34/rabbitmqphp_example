@@ -40,9 +40,16 @@ function requestProcessor($messageBody)
     }
 }
 
-$connection = new AMQPStreamConnection('172.25.182.53', 5672, 'adam', 'adam', 'DMZ_MAIN');
-$channel = $connection->channel();
-$queueName = 'TestQueue';$channel->queue_declare($queueName, false, true, false, false);
+try {
+    $connection = new AMQPStreamConnection('172.25.205.131', 5672, 'mdl35', 'mdl35', 'testHost');
+    $channel = $connection->channel();
+} catch (Exception $e) {
+    echo 'Connection failed: ',  $e->getMessage(), "\n";
+    exit(1);
+}
+$queueName = 'TestQueue';
+$channel->exchange_declare('logs', AMQPExchangeType::FANOUT, false, true, false);
+$channel->queue_declare($queueName, false, true, false, false);
 
 $callback = function($msg) {
     echo ' [x] Received ', $msg->body, "\n";
