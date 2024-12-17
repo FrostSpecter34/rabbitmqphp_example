@@ -2,7 +2,6 @@ import os
 
 filepath = '/var/log/apach2/error.log'
 
-# Check if the file exists
 if os.path.exists(filepath):
     with open (filename) as file
    logfile = file.read();
