@@ -137,10 +137,11 @@ def main():
     while True:
         print("Waiting for a new bundle...")
         # Use inotifywait to wait for a new file in the BUNDLE_DIR
-        result = subprocess.run(['inotifywait', '-e', 'create', '--format', '%f', BUNDLE_DIR], capture_output=True, text=True)
+        result = subprocess.run(['/usr/bin/inotifywait', '-e', 'create', '--format', '%f', BUNDLE_DIR],capture_output=True, text=True)
         if result.returncode == 0:
             new_file = result.stdout.strip()
             print(f"New file detected: {new_file}")
+            sys.stdout.flush()
 
             # Introduce a delay to ensure the file is fully written
             time.sleep(2)  # Adjust delay as needed (2 seconds here)
