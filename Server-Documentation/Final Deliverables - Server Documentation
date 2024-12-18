@@ -2,4 +2,44 @@ SSL and Firewall Documentation
 
 1. Ensure that apache web server has been started and running
 2. I created a SSL folder and set ownership and permissions of the folder
-3. I generated a certificate authority private key using this command 
+3. I generated a certificate authority private key using this command sudo openssl genrsa -out /etc/apache2/ssl/ca.key 4096
+4. I created a certificate by the certificate authority using sudo openssl req -x509 -new -nodes -days 3650 \ -key /etc/apache2/ssl/ca.key \ -out /etc/apache2/ssl/ca.crt \
+-subj "/C=US/ST=State/L=City/O=Organization/OU=IT Department/CN=MyCustomCA
+5. I generated a private server key using sudo openssl genrsa -out /etc/apache2/ssl/server.key 2048
+6. I created a Server CSR using the command sudo openssl req -new -key /etc/apache2/ssl/server.key \ -out /etc/apache2/ssl/server.csr \ -subj "/C=US/ST=State/L=City/O=Organization/OU=IT Department/CN=your_domain.com"
+7. In the openssl. conf file, I added the below details.
+[ req ]
+default_bits       = 2048
+prompt             = no
+default_md         = sha256
+distinguished_name = dn
+req_extensions     = req_ext
+
+[ dn ]
+C  = US
+ST = State
+L  = City
+O  = Organization
+OU = IT Department
+CN = your_domain.com
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = your_domain.com
+DNS.2 = www.your_domain.com
+IP.1  = 134.122.6.131
+EOF
+
+8. I got the Sign Server CSR with CA to Get Server Certificate using this commands, sudo openssl x509 -req -in /etc/apache2/ssl/server.csr \  -CA /etc/apache2/ssl/ca.crt \
+  -CAkey /etc/apache2/ssl/ca.key \  -CAcreateserial \  -out /etc/apache2/ssl/server.crt \  -days 365 \  -sha256 \ -extfile /etc/apache2/ssl/server_openssl.cnf \ -extensions req_ext
+
+9.  I then set file Permissions for SSL Certificates and Keys for these sudo chmod 640 /etc/apache2/ssl/server.key sudo chmod 644 /etc/apache2/ssl/server.crt
+sudo chmod 644 /etc/apache2/ssl/ca.crt
+
+10. I Enabled Apache Modules with these commands sudo a2enmod ssl sudo a2enmod headers sudo a2enmod rewrite
+
+11. I restarted apache and then had the certificate imported to the web browser
+
+12. With doing all this, I was able to see the https in all the webpages that was run. 
