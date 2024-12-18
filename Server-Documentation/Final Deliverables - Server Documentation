@@ -1,4 +1,4 @@
-SSL and Firewall Documentation 
+SSL - Server Documentation
 
 1. Ensure that apache web server has been started and running
 2. I created a SSL folder and set ownership and permissions of the folder
@@ -43,3 +43,8 @@ sudo chmod 644 /etc/apache2/ssl/ca.crt
 11. I restarted apache and then had the certificate imported to the web browser
 
 12. With doing all this, I was able to see the https in all the webpages that was run. 
+
+Responsive Design - Bootstrap and CSS combined
+
+
+
