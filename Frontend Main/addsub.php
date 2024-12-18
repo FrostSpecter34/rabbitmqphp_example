@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <link rel="stylesheet" type="text/css" href="css/homepage.css" />
+     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <form action="addsub.php" method="POST">
@@ -82,5 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </form>
+     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
