@@ -52,6 +52,7 @@ $subscriptions = $response['subscriptions'] ?? [];
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/css/homepage.css" />
+ <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>Subscription Manager</title>
 </head>
 <body>
@@ -127,5 +128,6 @@ $subscriptions = $response['subscriptions'] ?? [];
 
         displaySubscriptions();
     </script>
+	   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
