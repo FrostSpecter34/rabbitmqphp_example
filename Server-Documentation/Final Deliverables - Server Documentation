@@ -46,5 +46,9 @@ sudo chmod 644 /etc/apache2/ssl/ca.crt
 
 Responsive Design - Bootstrap and CSS combined
 
-
-
+1. I visited the getbootstrap website 
+2. I downloaded the files for Javascript and CSS through it. 
+3. After which I included the bootstrap.min CSS file in all my webpages formating and responsiveness
+4. I also created a few CSS pages for additional styling on these webpages
+5. I also added this line of code <meta name="viewport" content="width=device-width, initial-scale=1.0"> in the head html of every webpage.
+6. By doing all this, I was able to make all the webpages responsive.
