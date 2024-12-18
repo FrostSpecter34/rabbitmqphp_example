@@ -2,7 +2,7 @@
 
 // Establishes connection to MySQL database
 function dbConnection() {
-    $hostname = '0.0.0.0';
+    $hostname = '172.25.205.131';
     $user = 'remote';
     $pass = 'password';
     $dbname = 'Sub_Service';

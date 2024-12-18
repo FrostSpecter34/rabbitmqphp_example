@@ -47,7 +47,7 @@ VM5_PASS="jinkarahul"
 # RAHUL QA
 VM6_USER="rahul-jinka"
 VM6_IP="172.25.226.207"
-VM5_PASS="rahuljinka"
+VM6_PASS="rahuljinka"
 
 
 # This function automates the SCP transfer with expect
