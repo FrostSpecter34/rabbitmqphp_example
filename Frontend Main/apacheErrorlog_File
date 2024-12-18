@@ -23,7 +23,18 @@ if os.path.exists(filepath):
 else:
     return null;
 
+if (is_dir(logSavedpath))
+shutil.copy(filepath, logSavedpath);
 
+def logSaved(logName, logContent)
+return logSavedpath();
+
+timestamp = datetime();
+Content = [timestamp] logContent;
+
+with open('filepath', 'Content') as file:
+    file.write('logSavedpath')
+print(Content);
 
 <?php
 
