@@ -12,7 +12,7 @@ fi
 inotifywait -m -e create "$WATCH_DIR" --format '%f' | while read FILE
 do
     echo "New file detected: $FILE"
-    php "$PHP_SCRIPT" "$FILE"
+    php "$SCRIPT" "$FILE"
 done
 
 
