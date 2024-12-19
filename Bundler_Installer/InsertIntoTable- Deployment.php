@@ -19,7 +19,6 @@ function Package($nameofBundle, $versionofNumber, $status_code) {
         	$create->execute();
         	$create->close();
         	$conn>close();
-        	return array("success" => true, "message" => "League created successfully.");
     	}	
 
     	$stmt->close();
