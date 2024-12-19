@@ -21,6 +21,6 @@ function Package($nameofBundle, $versionofNumber, $status_code) {
         	$conn>close();
     	}	
 
-    	$stmt->close();
+    	$create->close();
     	$db->close();
 }
