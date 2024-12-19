@@ -9,4 +9,11 @@ if [ ! -d "$WATCH_DIR" ]; then
     exit 1
 fi
 
+inotifywait -m -e create "$WATCH_DIR" --format '%f' | while read FILE
+do
+    echo "New file detected: $FILE"
+    php "$PHP_SCRIPT" "$FILE"
+done
+
+
 
